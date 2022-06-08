@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upgrad-deployment
+  labels:
+    app: upg-loadme
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: upg-loadme
+  template:
+    metadata:
+      labels:
+        app: upg-loadme
+    spec:
+      containers:
+      - name: upg-loadme
+        image: 348976648344.dkr.ecr.us-east-1.amazonaws.com/aditya-capastone-final:latest
+        ports:
+        - containerPort: 8080
+      tolerations:
+       - key: special
+         value: "true"
+         effect: NoSchedule
